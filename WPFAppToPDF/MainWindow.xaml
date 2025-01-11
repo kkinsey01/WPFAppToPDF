@@ -29,7 +29,7 @@
         <Label Name="AddressLabel" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">Address:</Label>
         <TextBox Name="AddressInput" Text="{Binding Address}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" 
                  VerticalAlignment="Center" Height="20" Margin="15, 0, 15, 0"></TextBox>
-        
-        <Button Grid.ColumnSpan="1" Grid.Row="4" Grid.Column="1">Form Submit</Button>
+
+        <Button Grid.ColumnSpan="1" Grid.Row="4" Grid.Column="1" Click="SubmitForm_Click">Form Submit</Button>
     </Grid>
 </Window>

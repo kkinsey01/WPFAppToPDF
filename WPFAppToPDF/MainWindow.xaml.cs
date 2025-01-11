@@ -10,54 +10,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFAppToPDF.Classes;
+using WPFAppToPDF.ViewModels;
 
 namespace WPFAppToPDF;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-[INotifyPropertyChanged]
 public partial class MainWindow : Window
 {
-    [ObservableProperty]
-    private string email;
+    private readonly MainAppViewModel _viewModel;    
 
-    [ObservableProperty]
-    private string address;
-
-    [ObservableProperty]
-    private string name;
-
-
-    partial void OnAddressChanged(string value)
+    public MainWindow(MainAppViewModel viewModel)
     {
-        formEntry.Address = value;
-    }
-
-    partial void OnEmailChanged(string value)
-    {
-        formEntry.Email = value;
-    }
-
-    partial void OnNameChanged(string value)
-    {
-        formEntry.Name = value;
-    }
-
-    private FormEntry formEntry;
-
-    public MainWindow()
-    {
+        DataContext = viewModel;
         InitializeComponent();
-        formEntry = new();
-        Name = "sss";
-        Email = "";
-        Address = "";        
-        DataContext = formEntry;
+        _viewModel = viewModel;
+        DataContext = viewModel;
     }
 
-    private async void SubmitForm_Click(object sender, RoutedEventArgs e)
+    private void SubmitForm_Click(object sender, RoutedEventArgs e)
     {
-        
+        _viewModel.SubmitFormToPDFCommand.Execute(this);
     }
 }
